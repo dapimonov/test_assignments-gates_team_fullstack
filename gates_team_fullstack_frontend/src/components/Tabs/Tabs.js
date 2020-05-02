@@ -50,6 +50,7 @@ class Tabs extends Component {
 Tabs.propTypes = {
   tabs: PropTypes.array,
   onChange: PropTypes.func,
+  initial: PropTypes.string,
 };
 
 Tabs.defaultProps = {
