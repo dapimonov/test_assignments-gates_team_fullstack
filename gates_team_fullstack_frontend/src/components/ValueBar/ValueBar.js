@@ -7,15 +7,12 @@ class ValueBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-
-    };
+    this.state = {};
 
     this.valueChanger = this.valueChanger.bind(this);
   }
 
   componentDidMount() {
-    // window.addEventListener("resize", this.updateWidth);
     this.props.values.forEach((value) => {
       this.setState(() => ({
         ...this.state,
@@ -25,12 +22,13 @@ class ValueBar extends Component {
     });
   }
 
-  // updateWidth = () => {
-  //   this.setState({
-  //     ...this.state,
-  //     width: this.barWrapper.current.offsetWidth,
-  //   });
-  // };
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.values !== this.props.values) {
+      this.props.values.forEach((value) => {
+        this.valueChanger(this.state[value.name], value.value, value.name);
+      });
+    }
+  }
 
   valueChanger = (start, finish, field) => {
     const step = start < finish ? 15 : -15;
