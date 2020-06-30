@@ -4,6 +4,13 @@
 }
 
 .App {
+  background: #E5E5E5;
   font-family: Open Sans;
   font-style: normal;
+  min-height: 100vh;
+  display: flex;
+
+  .dashboard {
+    margin: 50px auto auto;
+  }
 }

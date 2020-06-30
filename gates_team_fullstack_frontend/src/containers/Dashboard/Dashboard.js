@@ -4,6 +4,10 @@ import './Dashboard.scss';
 import Tabs from "../../components/Tabs/Tabs";
 import ValueBar from "../../components/ValueBar/ValueBar";
 import Indicator from "../../components/Indicator/Indicator";
+import SearchesCard from "../../components/Cards/SearchesCard";
+import ClicksCard from "../../components/Cards/ClicksCard";
+import BookingsCard from "../../components/Cards/BookingsCard";
+import Icon from "../../components/Icon/Icon";
 
 const tabs = [
   {label: 'Last hour', value: 'lastHour',},
@@ -29,11 +33,28 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard">
+        <h2>Main metrics</h2>
         <Tabs tabs={tabs} />
-        {
-          metrics.map((item) => <Indicator data={item}/>)
-        }
+        <div className='indicators-wrapper'>
+          {
+            metrics.map((item) => <Indicator data={item}/>)
+          }
+        </div>
         <ValueBar values={errorMetrics}/>
+        <div className='card-row'>
+          <Icon state='good' type='cart'/>
+          <SearchesCard />
+        </div>
+        <hr/>
+        <div className='card-row'>
+          <Icon state='bad' type='click'/>
+          <ClicksCard />
+        </div>
+        <hr/>
+        <div className='card-row'>
+          <Icon state='good' type='cart'/>
+          <BookingsCard />
+        </div>
       </div>
     );
   }
